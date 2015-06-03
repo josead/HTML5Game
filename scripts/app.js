@@ -15,26 +15,18 @@ function GameState(game) {
 					game.handleError(event);
 				}},
 				LOADING: { name: 'stateLoading' , id: 9 , callback: function() {
-					game.initLoading(event);
+					game.initLoading();
 				}}
 			};
 	self.Event = [];
 	
 	self.init = function () {
-		console.log('Initializing GameState');
-		// Event su
-		for (var state in states) {
-			self.subscribe(states[state].name, states[state].callback);
-		}
-			
-		self.state(states.INITIALIZING);
+	
 		
 	};
 	
 	self.subscribe = function(event,callback) {
-	
 		self.Event[event] = callback;
-			console.log(self.Event);
 	};
 	
 	self.updateEvent = function (event) {
@@ -55,6 +47,14 @@ function GameState(game) {
 		console.log( 'State changed to ' + state.name );
 		return self.state;
 	};
+	console.log('Initializing GameState');
+	// Event su
+	for (var state in states) {
+		self.subscribe(states[state].name, states[state].callback);
+	}
+
+	self.state(states.INITIALIZING);
+
 	return self;
 }
 
@@ -67,6 +67,10 @@ function Application() {
 	
 	self.initMenu = function () {
 		console.log('Menu initializate - show');
+		// Render Menu
+		
+		
+		
 	};
 	
 	self.handleError = function () {
